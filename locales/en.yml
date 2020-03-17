@@ -1,0 +1,8 @@
+en:
+  composer_title: Discourse Jitsi
+  room_placeholder: Jitsi Room ID
+  launch_jitsi: Launch Jitsi Video Conference
+  modal:
+    insert: insert
+    cancel: Cancel
+    title: Add Jitsi Integration

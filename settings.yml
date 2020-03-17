@@ -1,0 +1,4 @@
+only_available_to_staff:
+  default: false
+meet_jitsi_domain:
+  default: "meet.jit.si"

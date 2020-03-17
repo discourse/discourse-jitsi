@@ -1,0 +1,11 @@
+{
+  "name": "Discourse Jitsi",
+  "about_url": null,
+  "license_url": null,
+  "component": true,
+  "assets": {},
+  "color_schemes": {},
+  "modifiers": {
+    "csp_extensions": ["script_src: https://meet.jit.si/external_api.js"]
+  }
+}

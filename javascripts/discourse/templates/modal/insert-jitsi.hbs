@@ -1,0 +1,13 @@
+{{#d-modal-body title=(theme-prefix "modal.title") class="insert-jitsi"}}
+  <div class="insert-jitsi-form">
+    {{text-field
+      value=jitsiRoom
+      placeholderKey=(theme-prefix "room_placeholder")
+    }}
+  </div>
+{{/d-modal-body}}
+
+<div class="modal-footer">
+  {{d-button class="btn-primary" disabled=insertDisabled label=(theme-prefix "modal.insert") action=(action "insert")}}
+  {{d-button class="btn-danger" label=(theme-prefix "modal.cancel") action=(action "cancel")}}
+</div>
