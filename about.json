@@ -6,6 +6,7 @@
   "assets": {},
   "color_schemes": {},
   "modifiers": {
-    "csp_extensions": ["script_src: https://meet.jit.si/external_api.js"]
+    "csp_extensions": ["script_src: https://meet.jit.si/external_api.js"],
+    "svg_icons": ["video"]
   }
 }
