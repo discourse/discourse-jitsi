@@ -3,6 +3,6 @@ en:
   room_placeholder: Jitsi Room ID
   launch_jitsi: Launch Jitsi Video Conference
   modal:
-    insert: insert
+    insert: Insert
     cancel: Cancel
     title: Add Jitsi Integration
