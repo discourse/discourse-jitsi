@@ -8,11 +8,11 @@ This theme component adds Jitsi meet video conference integration in Discourse.
 2.  Browse to Hamburger Menu/Admin/Customize/Themes/Components/
 ![Screenshot_20200329_112735](https://user-images.githubusercontent.com/1787238/77857125-8b17d880-71b0-11ea-87e5-268883b10ae0.png)
 
-2.  Install as _[Theme Component](https://meta.discourse.org/t/how-do-i-install-a-theme-or-theme-component/63682)_ from Git repository
+3.  Install as _[Theme Component](https://meta.discourse.org/t/how-do-i-install-a-theme-or-theme-component/63682)_ from Git repository
 
 ![Screenshot_20200329_112809](https://user-images.githubusercontent.com/1787238/77857150-ada9f180-71b0-11ea-9c04-f29c61a555eb.png)
 
-3. You should be taken automatically to component configuration page.  Otherwise, browse to
+4. You should be taken automatically to component configuration page.  Otherwise, browse to
 Hamburger Menu/Admin/Customize/Themes/Components/
 
 ![Screenshot_20200329_113221](https://user-images.githubusercontent.com/1787238/77857308-84d62c00-71b1-11ea-90dd-4cd4a5202497.png)
