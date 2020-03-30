@@ -2,3 +2,11 @@ only_available_to_staff:
   default: false
 meet_jitsi_domain:
   default: "meet.jit.si"
+button_icon:
+  default: "video"
+  description: "Enter the name of the FontAwesome 5 icon to display in the Jitsi button. "
+svg_icons:
+  default: "video"
+  type: "list"
+  list_type: "compact"
+  description: "If using a custom icon, add it to this field too (in addition to 'button_icon' above."

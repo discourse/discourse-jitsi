@@ -1,7 +1,8 @@
 en:
   composer_title: Discourse Jitsi
-  room_placeholder: Jitsi Room ID
-  launch_jitsi: Launch Jitsi Video Conference
+  room_label: Jitsi Room ID
+  button_text_label: Button label (optional)
+  launch_jitsi: Start Video Conference
   modal:
     insert: Insert
     cancel: Cancel

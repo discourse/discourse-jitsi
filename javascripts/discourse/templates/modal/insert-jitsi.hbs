@@ -1,10 +1,20 @@
 {{#d-modal-body title=(theme-prefix "modal.title") class="insert-jitsi"}}
-  <div class="insert-jitsi-form">
-    {{text-field
-      value=jitsiRoom
-      placeholderKey=(theme-prefix "room_placeholder")
-    }}
+<div class="insert-jitsi-form">
+  <div class="insert-jitsi-input">
+    <label>
+      {{theme-i18n "room_label"}}
+    </label>
+    {{text-field value=jitsiRoom}}
   </div>
+
+  <div class="insert-jitsi-input">
+    <label>
+      {{theme-i18n "button_text_label"}}
+    </label>
+    {{text-field value=buttonText placeholderKey=(theme-prefix "launch_jitsi")}}
+  </div>
+
+</div>
 {{/d-modal-body}}
 
 <div class="modal-footer">

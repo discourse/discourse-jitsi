@@ -1,6 +1,7 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import showModal from "discourse/lib/show-modal";
 import loadScript from "discourse/lib/load-script";
+import { iconHTML } from "discourse-common/lib/icon-library";
 
 function launchJitsi($elem, user) {
   loadScript("https://meet.jit.si/external_api.js").then(() => {
@@ -29,10 +30,13 @@ function launchJitsi($elem, user) {
 }
 
 function attachButton($elem, user) {
+  const buttonLabel =
+    $elem.data("label") || I18n.t(themePrefix("launch_jitsi"));
+
   $elem.html(
-    `<button class='launch-jitsi btn'>${I18n.t(
-      themePrefix("launch_jitsi")
-    )}</button>`
+    `<button class='launch-jitsi btn'>${iconHTML(
+      settings.button_icon
+    )} ${buttonLabel}</button>`
   );
   $elem.find("button").on("click", () => launchJitsi($elem, user));
 }
@@ -61,7 +65,7 @@ export default {
           title: themePrefix("composer_title"),
           id: "insertJitsi",
           group: "insertions",
-          icon: "video",
+          icon: settings.button_icon,
           perform: e =>
             showModal("insert-jitsi").setProperties({ toolbarEvent: e })
         });

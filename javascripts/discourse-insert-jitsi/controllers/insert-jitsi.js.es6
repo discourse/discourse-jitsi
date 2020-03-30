@@ -12,13 +12,15 @@ export default Controller.extend(ModalFunctionality, {
 
   onShow() {
     this.setProperties({
-      jitsiRoom: null
+      jitsiRoom: "",
+      buttonText: ""
     });
   },
 
   actions: {
     insert() {
-      let text = `[wrap=discourse-jitsi room="${this.jitsiRoom}"][/wrap]`;
+      const btnTxt = this.buttonText ? ` label="${this.buttonText}"` : "";
+      let text = `[wrap=discourse-jitsi room="${this.jitsiRoom}"${btnTxt}][/wrap]`;
       this.toolbarEvent.addText(text);
       this.send("closeModal");
     },
