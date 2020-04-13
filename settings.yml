@@ -1,3 +1,6 @@
+show_in_options_dropdown:
+  default: false
+  description: "When unchecked, icon is shown in composer toolbar."
 only_available_to_staff:
   default: false
 meet_jitsi_domain:
