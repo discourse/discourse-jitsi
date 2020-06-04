@@ -58,7 +58,11 @@ export default {
       let currentUser = api.getCurrentUser();
 
       if (settings.show_in_options_dropdown) {
-        if (settings.only_available_to_staff && !currentUser.staff) {
+        if (
+          settings.only_available_to_staff &&
+          currentUser &&
+          !currentUser.staff
+        ) {
           // do nothing if limited to staff
         } else {
           api.modifyClass("controller:composer", {
@@ -82,7 +86,11 @@ export default {
         }
       } else {
         api.onToolbarCreate(toolbar => {
-          if (settings.only_available_to_staff && !currentUser.staff) {
+          if (
+            settings.only_available_to_staff &&
+            currentUser &&
+            !currentUser.staff
+          ) {
             return;
           }
 
