@@ -11,8 +11,8 @@ function launchJitsi($elem, user) {
       height: 450,
       parentNode: $elem.parent()[0],
       interfaceConfigOverwrite: {
-        DEFAULT_REMOTE_DISPLAY_NAME: "",
-      },
+        DEFAULT_REMOTE_DISPLAY_NAME: ""
+      }
     };
 
     const jitsiAPI = new JitsiMeetExternalAPI(domain, options);
@@ -54,7 +54,7 @@ export default {
   name: "insert-jitsi",
 
   initialize() {
-    withPluginApi("0.8.31", (api) => {
+    withPluginApi("0.8.31", api => {
       let currentUser = api.getCurrentUser();
 
       if (settings.show_in_options_dropdown) {
@@ -65,23 +65,23 @@ export default {
             actions: {
               insertJitsiModal() {
                 showModal("insert-jitsi").setProperties({
-                  toolbarEvent: this.get("toolbarEvent"),
+                  toolbarEvent: this.get("toolbarEvent")
                 });
-              },
-            },
+              }
+            }
           });
 
-          api.addToolbarPopupMenuOptionsCallback((controller) => {
+          api.addToolbarPopupMenuOptionsCallback(controller => {
             return {
               id: "insert_jitsi_button",
               icon: settings.button_icon,
               action: "insertJitsiModal",
-              label: themePrefix("composer_title"),
+              label: themePrefix("composer_title")
             };
           });
         }
       } else {
-        api.onToolbarCreate((toolbar) => {
+        api.onToolbarCreate(toolbar => {
           if (settings.only_available_to_staff && !currentUser.staff) {
             return;
           }
@@ -91,13 +91,13 @@ export default {
             id: "insertJitsi",
             group: "insertions",
             icon: settings.button_icon,
-            perform: (e) =>
-              showModal("insert-jitsi").setProperties({ toolbarEvent: e }),
+            perform: e =>
+              showModal("insert-jitsi").setProperties({ toolbarEvent: e })
           });
         });
       }
 
       api.decorateCooked(attachJitsi, { id: "discourse-jitsi" });
     });
-  },
+  }
 };
