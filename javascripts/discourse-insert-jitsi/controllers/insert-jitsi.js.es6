@@ -13,19 +13,24 @@ export default Controller.extend(ModalFunctionality, {
   onShow() {
     this.setProperties({
       jitsiRoom: "",
-      buttonText: ""
+      buttonText: "",
     });
+  },
+
+  randomID() {
+    return Math.random().toString(36).slice(-8);
   },
 
   actions: {
     insert() {
       const btnTxt = this.buttonText ? ` label="${this.buttonText}"` : "";
-      let text = `[wrap=discourse-jitsi room="${this.jitsiRoom}"${btnTxt}][/wrap]`;
+      const roomID = this.jitsiRoom || this.randomID();
+      let text = `[wrap=discourse-jitsi room="${roomID}"${btnTxt}][/wrap]`;
       this.toolbarEvent.addText(text);
       this.send("closeModal");
     },
     cancel() {
       this.send("closeModal");
-    }
-  }
+    },
+  },
 });

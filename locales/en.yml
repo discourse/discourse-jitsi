@@ -1,9 +1,10 @@
 en:
   composer_title: Discourse Jitsi
-  room_label: Jitsi Room ID
-  button_text_label: Button label (optional)
+  room_label: Jitsi room ID
+  button_text_label: Button label
   launch_jitsi: Start Video Conference
   modal:
+    room_field_description: Enter an ID for your room (or leave empty use a randomly generated ID).
     insert: Insert
     cancel: Cancel
     title: Add Jitsi Integration
