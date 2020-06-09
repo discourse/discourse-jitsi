@@ -4,7 +4,7 @@ en:
   button_text_label: Button label
   launch_jitsi: Start Video Conference
   modal:
-    room_field_description: Enter an ID for your room (or leave empty use a randomly generated ID).
+    room_field_description: Enter an ID for your room (or leave empty to use a randomly generated ID).
     insert: Insert
     cancel: Cancel
     title: Add Jitsi Integration
