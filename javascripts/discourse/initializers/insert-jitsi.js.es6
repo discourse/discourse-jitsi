@@ -4,15 +4,26 @@ import loadScript from "discourse/lib/load-script";
 import { iconHTML } from "discourse-common/lib/icon-library";
 
 function launchJitsi($elem, user) {
+  const data = $elem.data(),
+    site = Discourse.__container__.lookup("site:main"),
+    domain = settings.meet_jitsi_domain;
+
+  if (
+    (site.mobileView && data.mobileIframe === false) ||
+    (!site.mobileView && data.desktopIframe === false)
+  ) {
+    window.location.href = `https://${domain}/${data.room}`;
+    return false;
+  }
+
   loadScript("https://meet.jit.si/external_api.js").then(() => {
-    const domain = settings.meet_jitsi_domain;
     const options = {
-      roomName: $elem.data("room"),
+      roomName: data.room,
       height: 450,
       parentNode: $elem.parent()[0],
       interfaceConfigOverwrite: {
-        DEFAULT_REMOTE_DISPLAY_NAME: ""
-      }
+        DEFAULT_REMOTE_DISPLAY_NAME: "",
+      },
     };
 
     const jitsiAPI = new JitsiMeetExternalAPI(domain, options);
@@ -54,7 +65,7 @@ export default {
   name: "insert-jitsi",
 
   initialize() {
-    withPluginApi("0.8.31", api => {
+    withPluginApi("0.8.31", (api) => {
       let currentUser = api.getCurrentUser();
 
       if (settings.show_in_options_dropdown) {
@@ -69,23 +80,23 @@ export default {
             actions: {
               insertJitsiModal() {
                 showModal("insert-jitsi").setProperties({
-                  toolbarEvent: this.get("toolbarEvent")
+                  toolbarEvent: this.get("toolbarEvent"),
                 });
-              }
-            }
+              },
+            },
           });
 
-          api.addToolbarPopupMenuOptionsCallback(controller => {
+          api.addToolbarPopupMenuOptionsCallback((controller) => {
             return {
               id: "insert_jitsi_button",
               icon: settings.button_icon,
               action: "insertJitsiModal",
-              label: themePrefix("composer_title")
+              label: themePrefix("composer_title"),
             };
           });
         }
       } else {
-        api.onToolbarCreate(toolbar => {
+        api.onToolbarCreate((toolbar) => {
           if (
             settings.only_available_to_staff &&
             currentUser &&
@@ -99,13 +110,13 @@ export default {
             id: "insertJitsi",
             group: "insertions",
             icon: settings.button_icon,
-            perform: e =>
-              showModal("insert-jitsi").setProperties({ toolbarEvent: e })
+            perform: (e) =>
+              showModal("insert-jitsi").setProperties({ toolbarEvent: e }),
           });
         });
       }
 
       api.decorateCooked(attachJitsi, { id: "discourse-jitsi" });
     });
-  }
+  },
 };

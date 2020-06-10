@@ -5,6 +5,7 @@ only_available_to_staff:
   default: false
 meet_jitsi_domain:
   default: "meet.jit.si"
+  description: "Domain only (no protocol, no trailing slash)."
 button_icon:
   default: "video"
   description: "Enter the name of the FontAwesome 5 icon to display in the Jitsi button. "

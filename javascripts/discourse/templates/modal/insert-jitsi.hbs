@@ -15,6 +15,20 @@
     {{text-field value=buttonText placeholderKey=(theme-prefix "launch_jitsi")}}
   </div>
 
+  <div class="insert-jitsi-input">
+    <label class='checkbox-label'>
+      {{input type="checkbox" checked=mobileIframe}}
+      {{theme-i18n "modal.mobile_iframe"}}
+    </label>
+  </div>
+
+  <div class="insert-bbb-input">
+    <label class='checkbox-label'>
+      {{input type="checkbox" checked=desktopIframe}}
+      {{theme-i18n "modal.desktop_iframe"}}
+    </label>
+  </div>
+
 </div>
 {{/d-modal-body}}
 
