@@ -16,7 +16,7 @@ function launchJitsi($elem, user) {
     return false;
   }
 
-  loadScript("https://meet.jit.si/external_api.js").then(() => {
+  loadScript("https://" + domain + "/external_api.js").then(() => {
     const options = {
       roomName: data.room,
       height: 450,
