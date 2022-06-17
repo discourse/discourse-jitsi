@@ -1,12 +1,13 @@
+/* global JitsiMeetExternalAPI */
 import { withPluginApi } from "discourse/lib/plugin-api";
 import showModal from "discourse/lib/show-modal";
 import loadScript from "discourse/lib/load-script";
 import { iconHTML } from "discourse-common/lib/icon-library";
+import I18n from "I18n";
 
-function launchJitsi($elem, user) {
-  const data = $elem.data(),
-    site = Discourse.__container__.lookup("site:main"),
-    domain = settings.meet_jitsi_domain;
+function launchJitsi($elem, user, site) {
+  const data = $elem.data();
+  const domain = settings.meet_jitsi_domain;
 
   if (
     (site.mobileView && data.mobileIframe === false) ||
@@ -40,7 +41,7 @@ function launchJitsi($elem, user) {
   });
 }
 
-function attachButton($elem, user) {
+function attachButton($elem, user, site) {
   const buttonLabel =
     $elem.data("label") || I18n.t(themePrefix("launch_jitsi"));
 
@@ -49,14 +50,16 @@ function attachButton($elem, user) {
       settings.button_icon
     )} ${buttonLabel}</button>`
   );
-  $elem.find("button").on("click", () => launchJitsi($elem, user));
+
+  $elem.find("button").on("click", () => launchJitsi($elem, user, site));
 }
 
 function attachJitsi($elem, helper) {
   if (helper) {
-    const currentUser = helper.widget.currentUser;
+    const { currentUser, site } = helper.widget;
+
     $elem.find("[data-wrap=discourse-jitsi]").each((idx, val) => {
-      attachButton($(val), currentUser);
+      attachButton($(val), currentUser, site);
     });
   }
 }
@@ -86,7 +89,7 @@ export default {
             },
           });
 
-          api.addToolbarPopupMenuOptionsCallback((controller) => {
+          api.addToolbarPopupMenuOptionsCallback(() => {
             return {
               id: "insert_jitsi_button",
               icon: settings.button_icon,

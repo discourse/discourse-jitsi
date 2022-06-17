@@ -1,38 +1,49 @@
 {{#d-modal-body title=(theme-prefix "modal.title") class="insert-jitsi"}}
-<div class="insert-jitsi-form">
-  <div class="insert-jitsi-input">
-    <label>
-      {{theme-i18n "room_label"}}
-    </label>
-    {{text-field value=jitsiRoom}}
-    <div class="desc">{{theme-i18n "modal.room_field_description"}}</div>
-  </div>
+  <div class="insert-jitsi-form">
+    <div class="insert-jitsi-input">
+      <label>
+        {{theme-i18n "room_label"}}
+      </label>
+      {{text-field value=jitsiRoom}}
+      <div class="desc">{{theme-i18n "modal.room_field_description"}}</div>
+    </div>
 
-  <div class="insert-jitsi-input">
-    <label>
-      {{theme-i18n "button_text_label"}}
-    </label>
-    {{text-field value=buttonText placeholderKey=(theme-prefix "launch_jitsi")}}
-  </div>
+    <div class="insert-jitsi-input">
+      <label>
+        {{theme-i18n "button_text_label"}}
+      </label>
+      {{text-field
+        value=buttonText
+        placeholderKey=(theme-prefix "launch_jitsi")
+      }}
+    </div>
 
-  <div class="insert-jitsi-input">
-    <label class='checkbox-label'>
-      {{input type="checkbox" checked=mobileIframe}}
-      {{theme-i18n "modal.mobile_iframe"}}
-    </label>
-  </div>
+    <div class="insert-jitsi-input">
+      <label class="checkbox-label">
+        {{input type="checkbox" checked=mobileIframe}}
+        {{theme-i18n "modal.mobile_iframe"}}
+      </label>
+    </div>
 
-  <div class="insert-bbb-input">
-    <label class='checkbox-label'>
-      {{input type="checkbox" checked=desktopIframe}}
-      {{theme-i18n "modal.desktop_iframe"}}
-    </label>
+    <div class="insert-bbb-input">
+      <label class="checkbox-label">
+        {{input type="checkbox" checked=desktopIframe}}
+        {{theme-i18n "modal.desktop_iframe"}}
+      </label>
+    </div>
   </div>
-
-</div>
 {{/d-modal-body}}
 
 <div class="modal-footer">
-  {{d-button class="btn-primary" disabled=insertDisabled label=(theme-prefix "modal.insert") action=(action "insert")}}
-  {{d-button class="btn-danger" label=(theme-prefix "modal.cancel") action=(action "cancel")}}
+  {{d-button
+    class="btn-primary"
+    disabled=insertDisabled
+    label=(theme-prefix "modal.insert")
+    action=(action "insert")
+  }}
+  {{d-button
+    class="btn-danger"
+    label=(theme-prefix "modal.cancel")
+    action=(action "cancel")
+  }}
 </div>
