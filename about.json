@@ -2,11 +2,7 @@
   "name": "Discourse Jitsi",
   "component": true,
   "modifiers": {
-    "csp_extensions": [
-      "script_src: https://meet.jit.si/external_api.js"
-    ],
-    "svg_icons": [
-      "video"
-    ]
+    "csp_extensions": ["script_src: https://meet.jit.si/external_api.js"],
+    "svg_icons": ["video"]
   }
 }
