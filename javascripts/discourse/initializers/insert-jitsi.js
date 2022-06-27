@@ -80,6 +80,7 @@ export default {
           // do nothing if limited to staff
         } else {
           api.modifyClass("controller:composer", {
+            pluginId: "discourse-jitsi",
             actions: {
               insertJitsiModal() {
                 showModal("insert-jitsi").setProperties({
