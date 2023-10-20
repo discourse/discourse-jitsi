@@ -79,24 +79,14 @@ export default {
         ) {
           // do nothing if limited to staff
         } else {
-          api.modifyClass("controller:composer", {
-            pluginId: "discourse-jitsi",
-            actions: {
-              insertJitsiModal() {
-                showModal("insert-jitsi").setProperties({
-                  toolbarEvent: this.get("toolbarEvent"),
-                });
-              },
+          api.addComposerToolbarPopupMenuOption({
+            icon: settings.button_icon,
+            label: themePrefix("composer_title"),
+            action: (toolbarEvent) => {
+              showModal("insert-jitsi").setProperties({
+                toolbarEvent,
+              });
             },
-          });
-
-          api.addToolbarPopupMenuOptionsCallback(() => {
-            return {
-              id: "insert_jitsi_button",
-              icon: settings.button_icon,
-              action: "insertJitsiModal",
-              label: themePrefix("composer_title"),
-            };
           });
         }
       } else {
