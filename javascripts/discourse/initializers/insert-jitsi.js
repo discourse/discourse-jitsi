@@ -1,10 +1,13 @@
 /* global JitsiMeetExternalAPI */
+import themePrefix from "discourse/helpers/theme-prefix";
 import loadScript from "discourse/lib/load-script";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconHTML } from "discourse-common/lib/icon-library";
 import I18n from "I18n";
 import InsertJitsi from "../components/modal/insert-jitsi";
 
+/* eslint-disable */
+// prettier-ignore
 function launchJitsi($elem, user, site) {
   const data = $elem.data();
   const domain = settings.meet_jitsi_domain;
@@ -63,6 +66,7 @@ function attachJitsi($elem, helper) {
     });
   }
 }
+/* eslint-enable */
 
 export default {
   name: "insert-jitsi",
@@ -71,6 +75,7 @@ export default {
     withPluginApi("0.8.31", (api) => {
       const currentUser = api.getCurrentUser();
       const modal = api.container.lookup("service:modal");
+      const settings = api.container.lookup("site-settings:main");
 
       if (settings.show_in_options_dropdown) {
         if (settings.only_available_to_staff && currentUser?.staff) {
