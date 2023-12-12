@@ -1,10 +1,13 @@
 /* global JitsiMeetExternalAPI */
-import { withPluginApi } from "discourse/lib/plugin-api";
-import showModal from "discourse/lib/show-modal";
+import themePrefix from "discourse/helpers/theme-prefix";
 import loadScript from "discourse/lib/load-script";
+import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconHTML } from "discourse-common/lib/icon-library";
 import I18n from "I18n";
+import InsertJitsi from "../components/modal/insert-jitsi";
 
+/* eslint-disable */
+// prettier-ignore
 function launchJitsi($elem, user, site) {
   const data = $elem.data();
   const domain = settings.meet_jitsi_domain;
@@ -63,49 +66,43 @@ function attachJitsi($elem, helper) {
     });
   }
 }
+/* eslint-enable */
 
 export default {
   name: "insert-jitsi",
 
   initialize() {
     withPluginApi("0.8.31", (api) => {
-      let currentUser = api.getCurrentUser();
+      const currentUser = api.getCurrentUser();
+      const modal = api.container.lookup("service:modal");
+      const settings = api.container.lookup("site-settings:main");
 
       if (settings.show_in_options_dropdown) {
+        if (settings.only_available_to_staff && currentUser?.staff) {
+          api.addComposerToolbarPopupMenuOption({
+            icon: settings.button_icon,
+            label: themePrefix("composer_title"),
+            action: (toolbarEvent) => {
+              modal.show(InsertJitsi, { model: { toolbarEvent } });
+            },
+          });
+        }
+      } else {
         if (
           settings.only_available_to_staff &&
           currentUser &&
           !currentUser.staff
         ) {
-          // do nothing if limited to staff
-        } else {
-          api.addComposerToolbarPopupMenuOption({
-            icon: settings.button_icon,
-            label: themePrefix("composer_title"),
-            action: (toolbarEvent) => {
-              showModal("insert-jitsi").setProperties({
-                toolbarEvent,
-              });
-            },
-          });
+          return;
         }
-      } else {
         api.onToolbarCreate((toolbar) => {
-          if (
-            settings.only_available_to_staff &&
-            currentUser &&
-            !currentUser.staff
-          ) {
-            return;
-          }
-
           toolbar.addButton({
             title: themePrefix("composer_title"),
             id: "insertJitsi",
             group: "insertions",
             icon: settings.button_icon,
-            perform: (e) =>
-              showModal("insert-jitsi").setProperties({ toolbarEvent: e }),
+            perform: (toolbarEvent) =>
+              modal.show(InsertJitsi, { model: { toolbarEvent } }),
           });
         });
       }
