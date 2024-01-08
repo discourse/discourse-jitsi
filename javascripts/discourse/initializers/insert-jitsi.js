@@ -1,5 +1,5 @@
+/*eslint no-undef:0 */
 /* global JitsiMeetExternalAPI */
-import themePrefix from "discourse/helpers/theme-prefix";
 import loadScript from "discourse/lib/load-script";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconHTML } from "discourse-common/lib/icon-library";
@@ -75,10 +75,9 @@ export default {
     withPluginApi("0.8.31", (api) => {
       const currentUser = api.getCurrentUser();
       const modal = api.container.lookup("service:modal");
-      const settings = api.container.lookup("site-settings:main");
 
       if (settings.show_in_options_dropdown) {
-        if (settings.only_available_to_staff && currentUser?.staff) {
+        if (!settings.only_available_to_staff || currentUser?.staff) {
           api.addComposerToolbarPopupMenuOption({
             icon: settings.button_icon,
             label: themePrefix("composer_title"),
