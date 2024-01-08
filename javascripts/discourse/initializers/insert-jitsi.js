@@ -1,5 +1,4 @@
 /* global JitsiMeetExternalAPI */
-import themePrefix from "discourse/helpers/theme-prefix";
 import loadScript from "discourse/lib/load-script";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconHTML } from "discourse-common/lib/icon-library";

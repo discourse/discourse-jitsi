@@ -5,7 +5,6 @@ import { action } from "@ember/object";
 import DButton from "discourse/components/d-button";
 import DModal from "discourse/components/d-modal";
 import TextField from "discourse/components/text-field";
-import themePrefix from "discourse/helpers/theme-prefix";
 import i18n from "discourse-common/helpers/i18n";
 
 export default class InsertJitsi extends Component {
