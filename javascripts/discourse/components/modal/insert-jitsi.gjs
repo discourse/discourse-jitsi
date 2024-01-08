@@ -1,3 +1,5 @@
+/*eslint no-undef:0 */
+
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { Input } from "@ember/component";

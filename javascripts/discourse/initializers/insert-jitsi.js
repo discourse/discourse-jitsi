@@ -1,3 +1,4 @@
+/*eslint no-undef:0 */
 /* global JitsiMeetExternalAPI */
 import loadScript from "discourse/lib/load-script";
 import { withPluginApi } from "discourse/lib/plugin-api";
