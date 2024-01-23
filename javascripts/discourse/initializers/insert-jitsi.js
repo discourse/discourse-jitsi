@@ -77,6 +77,13 @@ export default {
       const currentUser = api.getCurrentUser();
       const modal = api.container.lookup("service:modal");
 
+      api.decorateCooked(attachJitsi, { id: "discourse-jitsi" });
+
+      // Ensure the current user has access to the feature
+      if (settings.only_available_to_staff && currentUser && !currentUser.staff) {
+        return;
+      }
+
       // Chat plugin integration
       if (settings.chat_button && api.registerChatComposerButton) {
         const chat = api.container.lookup("service:chat");
@@ -109,25 +116,16 @@ export default {
       }
 
       if (settings.show_in_options_dropdown) {
-        if (!settings.only_available_to_staff || currentUser?.staff) {
-          api.addComposerToolbarPopupMenuOption({
-            icon: settings.button_icon,
-            label: themePrefix("composer_title"),
-            action: (toolbarEvent) => {
-              modal.show(InsertJitsi, {
-                model: { insertMeeting: toolbarEvent.addText },
-              });
-            },
-          });
-        }
+        api.addComposerToolbarPopupMenuOption({
+          icon: settings.button_icon,
+          label: themePrefix("composer_title"),
+          action: (toolbarEvent) => {
+            modal.show(InsertJitsi, {
+              model: { insertMeeting: toolbarEvent.addText },
+            });
+          },
+        });
       } else {
-        if (
-          settings.only_available_to_staff &&
-          currentUser &&
-          !currentUser.staff
-        ) {
-          return;
-        }
         api.onToolbarCreate((toolbar) => {
           toolbar.addButton({
             title: themePrefix("composer_title"),
@@ -141,8 +139,6 @@ export default {
           });
         });
       }
-
-      api.decorateCooked(attachJitsi, { id: "discourse-jitsi" });
     });
   },
 };
