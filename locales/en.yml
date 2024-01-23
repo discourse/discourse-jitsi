@@ -1,12 +1,17 @@
 en:
   composer_title: Discourse Jitsi
   room_label: Jitsi room ID
+  room_url_label: Room URL
   button_text_label: Button label
   launch_jitsi: Start Video Conference
   modal:
     room_field_description: Enter an ID for your room (or leave empty to use a randomly generated ID).
+    url_description: You can connect to and share the room using the URL below
     insert: Insert
     cancel: Cancel
     title: Add Jitsi Integration
+    copy: Copy Room URL
+    title_create: Launch Jitsi Integration
     mobile_iframe: Show in an iframe on mobile devices
     desktop_iframe: Show in an iframe on desktop devices
+    launch: Start Video Conference

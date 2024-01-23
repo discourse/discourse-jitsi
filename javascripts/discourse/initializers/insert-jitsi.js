@@ -2,7 +2,7 @@
 /* global JitsiMeetExternalAPI */
 import loadScript from "discourse/lib/load-script";
 import { withPluginApi } from "discourse/lib/plugin-api";
-import { iconHTML } from "discourse-common/lib/icon-library";
+import { iconHTML, iconNode } from "discourse-common/lib/icon-library";
 import I18n from "I18n";
 import InsertJitsi from "../components/modal/insert-jitsi";
 
@@ -80,8 +80,43 @@ export default {
       api.decorateCooked(attachJitsi, { id: "discourse-jitsi" });
 
       // Ensure the current user has access to the feature
-      if (settings.only_available_to_staff && currentUser && !currentUser.staff) {
+      if (
+        settings.only_available_to_staff &&
+        currentUser &&
+        !currentUser.staff
+      ) {
         return;
+      }
+
+      // Header button
+      if (settings.header_button) {
+        // Decorate the header icons section
+        api.decorateWidget("header-icons:before", (helper) => {
+          // Create the new header icon
+          return helper.h("li.header-icon-meeting", [
+            helper.h(
+              "a.icon.btn-flat",
+              {
+                onclick: () => {
+                  modal.show(InsertJitsi, {
+                    model: {
+                      // This model cannot insert
+                      insertMeeting: (_) => {},
+                      createOnly: true,
+                      plainText: true,
+                    },
+                  });
+                },
+                attributes: {
+                  target: "_blank",
+                  title: themePrefix("start_title"),
+                },
+              },
+              // Use the video icon
+              iconNode(settings.button_icon)
+            ),
+          ]);
+        });
       }
 
       // Chat plugin integration
@@ -121,7 +156,9 @@ export default {
           label: themePrefix("composer_title"),
           action: (toolbarEvent) => {
             modal.show(InsertJitsi, {
-              model: { insertMeeting: toolbarEvent.addText },
+              model: {
+                insertMeeting: toolbarEvent.addText,
+              },
             });
           },
         });
@@ -134,7 +171,9 @@ export default {
             icon: settings.button_icon,
             perform: (toolbarEvent) =>
               modal.show(InsertJitsi, {
-                model: { insertMeeting: toolbarEvent.addText },
+                model: {
+                  insertMeeting: toolbarEvent.addText,
+                },
               }),
           });
         });

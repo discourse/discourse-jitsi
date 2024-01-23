@@ -3,6 +3,6 @@
   "component": true,
   "modifiers": {
     "csp_extensions": ["script_src: https://meet.jit.si/external_api.js"],
-    "svg_icons": ["video"]
+    "svg_icons": ["video", "copy"]
   }
 }

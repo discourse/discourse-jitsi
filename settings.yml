@@ -12,6 +12,12 @@ jitsi_script_src:
 button_icon:
   default: "video"
   description: "Enter the name of the FontAwesome 5 icon to display in the Jitsi button. "
+copy_button_icon:
+  default: "copy"
+  description: "Enter the name of the FontAwesome 5 icon to display as the copy button. "
+header_button:
+  default: false
+  description: "Display a video button in the header for creating a meeting"
 chat_button:
   default: true
   description: "Integrate with Discourse Chat"
