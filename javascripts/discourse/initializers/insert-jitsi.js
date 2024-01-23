@@ -98,10 +98,10 @@ export default {
               "a.icon.btn-flat",
               {
                 onclick: () => {
-                  modal.show(InsertJitsi, {
+                  modal.show(InsertJitsiComponent, {
                     model: {
                       // This model cannot insert
-                      insertMeeting: (_) => {},
+                      insertMeeting: () => {},
                       createOnly: true,
                       plainText: true,
                     },
