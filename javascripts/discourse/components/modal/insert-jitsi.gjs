@@ -31,9 +31,17 @@ export default class InsertJitsi extends Component {
   insert() {
     const btnTxt = this.buttonText ? ` label="${this.buttonText}"` : "";
     const roomID = this.jitsiRoom || this.randomID();
-    const text = `[wrap=discourse-jitsi room="${roomID}"${btnTxt} mobileIframe="${this.mobileIframe}" desktopIframe="${this.desktopIframe}"][/wrap]`;
-    this.args.model.toolbarEvent.addText(text);
 
+    let text;
+
+    if (this.args.model.plainText) {
+      const domain = settings.meet_jitsi_domain;
+      text = `https://${domain}/${roomID}`;
+    } else {
+      text = `[wrap=discourse-jitsi room="${roomID}"${btnTxt} mobileIframe="${this.mobileIframe}" desktopIframe="${this.desktopIframe}"][/wrap]`;
+    }
+
+    this.args.model.insertMeeting(text);
     this.args.closeModal();
   }
 
@@ -64,31 +72,34 @@ export default class InsertJitsi extends Component {
               }}</div>
           </div>
 
-          <div class="insert-jitsi-input">
-            <label>
-              {{i18n (themePrefix "button_text_label")}}
-            </label>
-            <TextField
-              @value={{this.buttonText}}
-              @placeholderKey={{themePrefix "launch_jitsi"}}
-            />
-          </div>
+          {{#unless @model.plainText}}
 
-          <div class="insert-jitsi-input">
-            <label class="checkbox-label">
-              <Input @type="checkbox" @checked={{this.mobileIframe}} />
-              {{i18n (themePrefix "modal.mobile_iframe")}}
-            </label>
-          </div>
+            <div class="insert-jitsi-input">
+              <label>
+                {{i18n (themePrefix "button_text_label")}}
+              </label>
+              <TextField
+                @value={{this.buttonText}}
+                @placeholderKey={{themePrefix "launch_jitsi"}}
+              />
+            </div>
 
-          <div class="insert-bbb-input">
-            <label class="checkbox-label">
-              <Input @type="checkbox" @checked={{this.desktopIframe}} />
-              {{i18n (themePrefix "modal.desktop_iframe")}}
-            </label>
-          </div>
+            <div class="insert-jitsi-input">
+              <label class="checkbox-label">
+                <Input @type="checkbox" @checked={{this.mobileIframe}} />
+                {{i18n (themePrefix "modal.mobile_iframe")}}
+              </label>
+            </div>
+
+            <div class="insert-bbb-input">
+              <label class="checkbox-label">
+                <Input @type="checkbox" @checked={{this.desktopIframe}} />
+                {{i18n (themePrefix "modal.desktop_iframe")}}
+              </label>
+            </div>
+
+          {{/unless}}
         </div>
-
       </:body>
       <:footer>
         <DButton
