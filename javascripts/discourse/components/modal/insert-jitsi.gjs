@@ -198,7 +198,7 @@ export default class InsertJitsi extends Component {
                   class="btn-primary btn-icon btn-copy"
                   @disabled={{this.insertDisabled}}
                   @title={{themePrefix "modal.copy"}}
-                  @action={{this.copyRoomURL1}}
+                  @action={{this.copyRoomURL}}
                   @icon={{settings.copy_button_icon}}
                 />
               </div>
