@@ -109,7 +109,7 @@ export default {
                 },
                 attributes: {
                   target: "_blank",
-                  title: themePrefix("start_title"),
+                  title: I18n.t(themePrefix("start_title")),
                 },
               },
               // Use the video icon
