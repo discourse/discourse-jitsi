@@ -9,6 +9,8 @@ export default class InsertJitsiComponent extends Component {
   @tracked desktopIframe = settings.default_desktop_iframe;
   @tracked jitsiRoom = "";
   @tracked buttonText = "";
+  @tracked copied = false;
+
   // Randomly generated meeting ID
   randomRoomID = this.getRandomID();
 
@@ -126,7 +128,12 @@ export default class InsertJitsiComponent extends Component {
 
   @action
   copyRoomURL() {
+    this.copied = true;
     this.copyText(this.roomURL);
+
+    setTimeout(() => {
+      this.copied = false;
+    }, 500);
   }
 
   @action

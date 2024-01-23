@@ -1,4 +1,6 @@
 .insert-jitsi-input {
+  position: relative;
+
   margin-bottom: 1em;
   .desc {
     font-size: $font-down-1;
@@ -9,4 +11,14 @@
   .desc--bottom {
     margin-top: 0rem;
   }
+}
+
+.insert-jitsi-copied {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: $primary-high;
+  padding: 0.5rem;
+  color: $secondary;
+  font-size: $font-down-1;
 }

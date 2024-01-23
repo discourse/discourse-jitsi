@@ -53,6 +53,10 @@
             {{theme-i18n "room_url_label"}}
           </label>
           <div class="inline-form full-width">
+            {{#if this.copied}}
+              <span class="insert-jitsi-copied">{{theme-i18n "modal.copied"}}</span>
+            {{/if}}
+
             <TextField @value={{this.roomURL}} readonly />
             <DButton
               class="btn-primary btn-icon btn-copy"
