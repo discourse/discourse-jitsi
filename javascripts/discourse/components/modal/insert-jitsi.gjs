@@ -10,8 +10,8 @@ import TextField from "discourse/components/text-field";
 import i18n from "discourse-common/helpers/i18n";
 
 export default class InsertJitsi extends Component {
-  @tracked mobileIframe = true;
-  @tracked desktopIframe = true;
+  @tracked mobileIframe = settings.default_mobile_iframe;
+  @tracked desktopIframe = settings.default_desktop_iframe;
   @tracked jitsiRoom = "";
   @tracked buttonText = "";
 

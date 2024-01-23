@@ -15,6 +15,12 @@ button_icon:
 chat_button:
   default: true
   description: "Integrate with Discourse Chat"
+default_mobile_iframe:
+  default: true
+  description: "Enable iframe mode by default for mobile"
+default_desktop_iframe:
+  default: true
+  description: "Enable iframe mode by default for desktop"
 chat_button_position:
   description: "Position of the button within the chat window"
   default: dropdown
