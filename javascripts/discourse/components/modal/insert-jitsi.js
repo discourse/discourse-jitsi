@@ -133,7 +133,7 @@ export default class InsertJitsiComponent extends Component {
 
     setTimeout(() => {
       this.copied = false;
-    }, 500);
+    }, 1000);
   }
 
   @action
