@@ -16,7 +16,7 @@ function launchJitsi($elem, user, site) {
     (site.mobileView && data.mobileIframe === false) ||
     (!site.mobileView && data.desktopIframe === false)
   ) {
-    window.location.href = `https://${domain}/${data.room}`;
+    window.open(`https://${domain}/${data.room}`, "_blank");
     return false;
   }
 
@@ -66,6 +66,7 @@ function attachJitsi($elem, helper) {
     });
   }
 }
+
 /* eslint-enable */
 
 export default {
@@ -76,24 +77,55 @@ export default {
       const currentUser = api.getCurrentUser();
       const modal = api.container.lookup("service:modal");
 
+      api.decorateCooked(attachJitsi, { id: "discourse-jitsi" });
+
+      // Ensure the current user has access to the feature
+      if (settings.only_available_to_staff && currentUser && !currentUser.staff) {
+        return;
+      }
+
+      // Chat plugin integration
+      if (settings.chat_button && api.registerChatComposerButton) {
+        const chat = api.container.lookup("service:chat");
+
+        api.registerChatComposerButton({
+          title: themePrefix("composer_title"),
+          id: "insertChatJitsi",
+          group: "insertions",
+          position: settings.chat_button_position,
+          icon: settings.button_icon,
+          label: themePrefix("composer_title"),
+          action: () => {
+            modal.show(InsertJitsi, {
+              model: {
+                insertMeeting: (text) => {
+                  // Get the active channel ensuring one is present
+                  const activeChannel = chat.activeChannel;
+                  if (activeChannel === null) {
+                    return;
+                  }
+
+                  // Append the meeting link to the draft
+                  activeChannel.draft.message += text;
+                },
+                plainText: true,
+              },
+            });
+          },
+        });
+      }
+
       if (settings.show_in_options_dropdown) {
-        if (!settings.only_available_to_staff || currentUser?.staff) {
-          api.addComposerToolbarPopupMenuOption({
-            icon: settings.button_icon,
-            label: themePrefix("composer_title"),
-            action: (toolbarEvent) => {
-              modal.show(InsertJitsi, { model: { toolbarEvent } });
-            },
-          });
-        }
+        api.addComposerToolbarPopupMenuOption({
+          icon: settings.button_icon,
+          label: themePrefix("composer_title"),
+          action: (toolbarEvent) => {
+            modal.show(InsertJitsi, {
+              model: { insertMeeting: toolbarEvent.addText },
+            });
+          },
+        });
       } else {
-        if (
-          settings.only_available_to_staff &&
-          currentUser &&
-          !currentUser.staff
-        ) {
-          return;
-        }
         api.onToolbarCreate((toolbar) => {
           toolbar.addButton({
             title: themePrefix("composer_title"),
@@ -101,12 +133,12 @@ export default {
             group: "insertions",
             icon: settings.button_icon,
             perform: (toolbarEvent) =>
-              modal.show(InsertJitsi, { model: { toolbarEvent } }),
+              modal.show(InsertJitsi, {
+                model: { insertMeeting: toolbarEvent.addText },
+              }),
           });
         });
       }
-
-      api.decorateCooked(attachJitsi, { id: "discourse-jitsi" });
     });
   },
 };
