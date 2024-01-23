@@ -4,7 +4,7 @@ import loadScript from "discourse/lib/load-script";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconHTML, iconNode } from "discourse-common/lib/icon-library";
 import I18n from "I18n";
-import InsertJitsi from "../components/modal/insert-jitsi";
+import InsertJitsiComponent from "../components/modal/insert-jitsi";
 
 /* eslint-disable */
 // prettier-ignore
@@ -131,7 +131,7 @@ export default {
           icon: settings.button_icon,
           label: themePrefix("composer_title"),
           action: () => {
-            modal.show(InsertJitsi, {
+            modal.show(InsertJitsiComponent, {
               model: {
                 insertMeeting: (text) => {
                   // Get the active channel ensuring one is present
@@ -155,10 +155,8 @@ export default {
           icon: settings.button_icon,
           label: themePrefix("composer_title"),
           action: (toolbarEvent) => {
-            modal.show(InsertJitsi, {
-              model: {
-                insertMeeting: toolbarEvent.addText,
-              },
+            modal.show(InsertJitsiComponent, {
+              model: { insertMeeting: toolbarEvent.addText },
             });
           },
         });
@@ -170,10 +168,8 @@ export default {
             group: "insertions",
             icon: settings.button_icon,
             perform: (toolbarEvent) =>
-              modal.show(InsertJitsi, {
-                model: {
-                  insertMeeting: toolbarEvent.addText,
-                },
+              modal.show(InsertJitsiComponent, {
+                model: { insertMeeting: toolbarEvent.addText },
               }),
           });
         });
