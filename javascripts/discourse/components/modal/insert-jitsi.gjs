@@ -111,7 +111,7 @@ export default class InsertJitsi extends Component {
     if (this.args.model.plainText) {
       text = this.roomURL;
     } else {
-      const roomID = this.roomId;
+      const roomID = this.roomID;
       const btnTxt = this.buttonText ? ` label="${this.buttonText}"` : "";
       text = `[wrap=discourse-jitsi room="${roomID}"${btnTxt} mobileIframe="${this.mobileIframe}" desktopIframe="${this.desktopIframe}"][/wrap]`;
     }
