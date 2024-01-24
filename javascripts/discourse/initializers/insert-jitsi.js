@@ -1,5 +1,4 @@
-/*eslint no-undef:0 */
-/* global JitsiMeetExternalAPI */
+/* global JitsiMeetExternalAPI, settings, themePrefix */
 import loadScript from "discourse/lib/load-script";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconHTML, iconNode } from "discourse-common/lib/icon-library";

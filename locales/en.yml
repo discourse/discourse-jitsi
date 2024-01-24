@@ -4,6 +4,7 @@ en:
   room_url_label: Room URL
   button_text_label: Button label
   launch_jitsi: Start Video Conference
+  create_event: Create Meeting Event
   modal:
     room_field_description: Enter an ID for your room (or leave empty to use a randomly generated ID).
     url_description: You can connect to and share the room using the URL below
@@ -16,3 +17,5 @@ en:
     mobile_iframe: Show in an iframe on mobile devices
     desktop_iframe: Show in an iframe on desktop devices
     launch: Start Video Conference
+  event_modal:
+    title: Create Meeting Event

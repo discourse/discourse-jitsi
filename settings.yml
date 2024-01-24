@@ -5,6 +5,9 @@ locations:
   default: "Header Icon|Composer Toolbar|Composer Gear Menu|Chat Icon|Chat Toolbar"
 only_available_to_staff:
   default: false
+discourse_post_event_enabled:
+  description: "Enable to allow creating meeting events through discourse-calendar integration"
+  default: false
 meet_jitsi_domain:
   default: "meet.jit.si"
   description: "Domain only (no protocol, no trailing slash)."
