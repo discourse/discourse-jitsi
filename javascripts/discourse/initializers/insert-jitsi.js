@@ -67,7 +67,7 @@ function attachJitsi($elem, helper) {
   }
 }
 
-function createChatButton(chat, id, position) {
+function createChatButton(chat, modal, id, position) {
   return {
     title: themePrefix("composer_title"),
     id,
@@ -163,13 +163,13 @@ export default {
 
         if (locations.includes("chat-icon")) {
           api.registerChatComposerButton(
-            createChatButton(chat, "insertChatJitsiInline", "inline")
+            createChatButton(chat, modal, "insertChatJitsiInline", "inline")
           );
         }
 
         if (locations.includes("chat-toolbar")) {
           api.registerChatComposerButton(
-            createChatButton(chat, "insertChatJitsi", "dropdown")
+            createChatButton(chat, modal, "insertChatJitsi", "dropdown")
           );
         }
       }
