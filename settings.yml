@@ -1,6 +1,8 @@
-show_in_options_dropdown:
-  default: false
-  description: "When unchecked, icon is shown in composer toolbar."
+locations:
+  type: "list"
+  list_type: "compact"
+  description: 'The various locations where a video button should be added, when adding manually ensure the names match the following options: "Header Icon","Composer Toolbar","Composer Gear Menu","Chat Icon","Chat Toolbar"'
+  default: "Header Icon|Composer Toolbar|Composer Gear Menu|Chat Icon|Chat Toolbar"
 only_available_to_staff:
   default: false
 meet_jitsi_domain:
@@ -12,16 +14,6 @@ jitsi_script_src:
 button_icon:
   default: "video"
   description: "Enter the name of the FontAwesome 5 icon to display in the Jitsi button. "
-chat_button:
-  default: true
-  description: "Integrate with Discourse Chat"
-chat_button_position:
-  description: "Position of the button within the chat window"
-  default: dropdown
-  type: enum
-  choices:
-    - dropdown
-    - inline
 hide_iframe_buttons:
   default: false
   description: "Hide the choice for iframe settings from users, the default settings below will be used"
@@ -31,9 +23,6 @@ default_mobile_iframe:
 default_desktop_iframe:
   default: true
   description: "Enable iframe mode by default for desktop"
-header_button:
-  default: false
-  description: "Display a video button in the header for creating a meeting"
 copy_button_icon:
   default: "copy"
   description: "Enter the name of the FontAwesome 5 icon to display as the copy button. "

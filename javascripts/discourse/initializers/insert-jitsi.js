@@ -67,6 +67,34 @@ function attachJitsi($elem, helper) {
   }
 }
 
+function createChatButton(chat, id, position) {
+  return {
+    title: themePrefix("composer_title"),
+    id,
+    group: "insertions",
+    position,
+    icon: settings.button_icon,
+    label: themePrefix("composer_title"),
+    action: () => {
+      modal.show(InsertJitsiComponent, {
+        model: {
+          insertMeeting: (text) => {
+            // Get the active channel ensuring one is present
+            const activeChannel = chat.activeChannel;
+            if (activeChannel === null) {
+              return;
+            }
+
+            // Append the meeting link to the draft
+            activeChannel.draft.message += text;
+          },
+          plainText: true,
+        },
+      });
+    },
+  };
+}
+
 /* eslint-enable */
 
 export default {
@@ -88,8 +116,18 @@ export default {
         return;
       }
 
+      const locations = settings.locations.split("|").map((value) =>
+        value
+          // Remove extra spaces
+          .trim()
+          // Convert to lowercase
+          .toLowerCase()
+          // Replace spaces with a single dash
+          .replace(/\s/g, "-")
+      );
+
       // Header button
-      if (settings.header_button) {
+      if (locations.includes("header-icon")) {
         // Decorate the header icons section
         api.decorateWidget("header-icons:before", (helper) => {
           // Create the new header icon
@@ -120,37 +158,23 @@ export default {
       }
 
       // Chat plugin integration
-      if (settings.chat_button && api.registerChatComposerButton) {
+      if (api.registerChatComposerButton) {
         const chat = api.container.lookup("service:chat");
 
-        api.registerChatComposerButton({
-          title: themePrefix("composer_title"),
-          id: "insertChatJitsi",
-          group: "insertions",
-          position: settings.chat_button_position,
-          icon: settings.button_icon,
-          label: themePrefix("composer_title"),
-          action: () => {
-            modal.show(InsertJitsiComponent, {
-              model: {
-                insertMeeting: (text) => {
-                  // Get the active channel ensuring one is present
-                  const activeChannel = chat.activeChannel;
-                  if (activeChannel === null) {
-                    return;
-                  }
+        if (locations.includes("chat-icon")) {
+          api.registerChatComposerButton(
+            createChatButton(chat, "insertChatJitsiInline", "inline")
+          );
+        }
 
-                  // Append the meeting link to the draft
-                  activeChannel.draft.message += text;
-                },
-                plainText: true,
-              },
-            });
-          },
-        });
+        if (locations.includes("chat-toolbar")) {
+          api.registerChatComposerButton(
+            createChatButton(chat, "insertChatJitsi", "dropdown")
+          );
+        }
       }
 
-      if (settings.show_in_options_dropdown) {
+      if (locations.includes("composer-gear-menu")) {
         api.addComposerToolbarPopupMenuOption({
           icon: settings.button_icon,
           label: themePrefix("composer_title"),
@@ -160,7 +184,9 @@ export default {
             });
           },
         });
-      } else {
+      }
+
+      if (locations.includes("composer-toolbar")) {
         api.onToolbarCreate((toolbar) => {
           toolbar.addButton({
             title: themePrefix("composer_title"),

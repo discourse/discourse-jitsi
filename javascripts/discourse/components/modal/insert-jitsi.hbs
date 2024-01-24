@@ -54,7 +54,9 @@
           </label>
           <div class="inline-form full-width">
             {{#if this.copied}}
-              <span class="insert-jitsi-copied">{{theme-i18n "modal.copied"}}</span>
+              <span class="insert-jitsi-copied">
+                {{theme-i18n "modal.copied"}}
+              </span>
             {{/if}}
 
             <TextField @value={{this.roomURL}} readonly />
