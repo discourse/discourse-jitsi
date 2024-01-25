@@ -91,6 +91,57 @@
           {{/if}}
         </div>
 
+        {{#if this.canCreateEvent}}
+          <div class="control-group include-jitsi">
+            <label>{{theme-i18n "create_event_label"}}</label>
+            <p>{{theme-i18n "create_event_description"}}</p>
+            <div class="controls">
+              <Input @type="checkbox" @checked={{this.willCreateEvent}} />
+            </div>
+          </div>
+
+          {{#if this.willCreateEvent}}
+            <div class="control-group include-jitsi">
+              <label>{{theme-i18n "include_jitsi_label"}}</label>
+              <p>{{theme-i18n "include_jitsi_description"}}</p>
+              <div class="controls">
+                <Input @type="checkbox" @checked={{this.includeJitsi}} />
+              </div>
+            </div>
+
+            {{#if this.includeJitsi}}
+              <div class="control-group room-id">
+                <label>{{theme-i18n "room_label"}}</label>
+                <p>{{theme-i18n "modal.room_field_description"}}</p>
+                <div class="controls">
+                  <TextField
+                    @value={{this.jitsiRoom}}
+                    @autocomplete="off"
+                    @minlength="6"
+                    class="format-input"
+                  />
+                </div>
+              </div>
+            {{/if}}
+
+            <div class="control-group minimal">
+              <label>
+                {{i18n
+                  "discourse_calendar.discourse_post_event.builder_modal.minimal.label"
+                }}
+              </label>
+              <p>
+                {{i18n
+                  "discourse_calendar.discourse_post_event.builder_modal.minimal.checkbox_label"
+                }}
+              </p>
+              <div class="controls">
+                <Input @type="checkbox" @checked={{@model.event.minimal}} />
+              </div>
+            </div>
+          {{/if}}
+        {{/if}}
+
         {{#if this.advancedMode}}
           <div class="advanced-options">
             {{#unless this.isRange}}
@@ -117,103 +168,71 @@
               </div>
             {{/unless}}
 
-            <div class="control-group timezones">
-              <label>{{i18n
-                  "discourse_local_dates.create.form.timezones_title"
-                }}</label>
-              <p>{{i18n
-                  "discourse_local_dates.create.form.timezones_description"
-                }}</p>
-              <div class="controls">
-                <MultiSelect
-                  @valueProperty={{null}}
-                  @nameProperty={{null}}
-                  @content={{this.allTimezones}}
-                  @value={{this.timezones}}
-                  @options={{hash allowAny=false maximum=5}}
-                  class="timezones-input"
-                />
+            {{#unless this.willCreateEvent}}
+
+              <div class="control-group timezones">
+                <label>{{i18n
+                    "discourse_local_dates.create.form.timezones_title"
+                  }}</label>
+                <p>{{i18n
+                    "discourse_local_dates.create.form.timezones_description"
+                  }}</p>
+                <div class="controls">
+                  <MultiSelect
+                    @valueProperty={{null}}
+                    @nameProperty={{null}}
+                    @content={{this.allTimezones}}
+                    @value={{this.timezones}}
+                    @options={{hash allowAny=false maximum=5}}
+                    class="timezones-input"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div class="control-group format">
-              <label>{{i18n
-                  "discourse_local_dates.create.form.format_title"
-                }}</label>
-              <p>
-                {{i18n "discourse_local_dates.create.form.format_description"}}
-                <a
-                  target="_blank"
-                  href="https://momentjs.com/docs/#/parsing/string-format/"
-                  rel="noopener noreferrer"
-                >
-                  {{d-icon "question-circle"}}
-                </a>
-              </p>
-              <div class="controls">
-                <TextField @value={{this.format}} class="format-input" />
-              </div>
-            </div>
-            <div class="control-group">
-              <ul class="formats">
-                {{#each this.previewedFormats as |previewedFormat|}}
-                  <li class="format">
-                    <a
-                      class="moment-format"
-                      href
-                      {{on
-                        "click"
-                        (fn this.updateFormat previewedFormat.format)
-                      }}
-                    >
-                      {{previewedFormat.format}}
-                    </a>
-                    <span class="previewed-format">
-                      {{previewedFormat.preview}}
-                    </span>
-                  </li>
-                {{/each}}
-              </ul>
-            </div>
-          </div>
-        {{/if}}
-
-
-        {{#if this.canCreateEvent}}
-        <EventField
-          class="include-jitsi"
-          @label={{theme-prefix "include_jitsi_label"}}
-        >
-          <label class="checkbox-label">
-            <Input @type="checkbox" @checked={{this.includeJitsi}} />
-            <span class="message">
-              {{theme-i18n "include_jitsi_description"}}
-            </span>
-          </label>
-        </EventField>
-
-          {{#if this.includeJitsi}}
-            <EventField class="room-id" @label={{theme-prefix "room_label"}}>
-              <Input @value={{this.jitsiRoom}} />
-              <div class="desc">{{theme-i18n
-                  "modal.room_field_description"
-                }}</div>
-            </EventField>
-
-            <EventField
-              class="minimal-event"
-              @label="discourse_calendar.discourse_post_event.builder_modal.minimal.label"
-            >
-              <label class="checkbox-label">
-                <Input @type="checkbox" @checked={{@model.event.minimal}} />
-                <span class="message">
+              <div class="control-group format">
+                <label>{{i18n
+                    "discourse_local_dates.create.form.format_title"
+                  }}</label>
+                <p>
                   {{i18n
-                    "discourse_calendar.discourse_post_event.builder_modal.minimal.checkbox_label"
+                    "discourse_local_dates.create.form.format_description"
                   }}
-                </span>
-              </label>
-            </EventField>
-          {{/if}}
+                  <a
+                    target="_blank"
+                    href="https://momentjs.com/docs/#/parsing/string-format/"
+                    rel="noopener noreferrer"
+                  >
+                    {{d-icon "question-circle"}}
+                  </a>
+                </p>
+                <div class="controls">
+                  <TextField @value={{this.format}} class="format-input" />
+                </div>
+              </div>
+              <div class="control-group">
+                <ul class="formats">
+                  {{#each this.previewedFormats as |previewedFormat|}}
+                    <li class="format">
+                      <a
+                        class="moment-format"
+                        href
+                        {{on
+                          "click"
+                          (fn this.updateFormat previewedFormat.format)
+                        }}
+                      >
+                        {{previewedFormat.format}}
+                      </a>
+                      <span class="previewed-format">
+                        {{previewedFormat.preview}}
+                      </span>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+
+            {{/unless}}
+          </div>
         {{/if}}
       </form>
     </ConditionalLoadingSection>

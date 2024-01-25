@@ -6,7 +6,6 @@ import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import LocalDatesCreate from "discourse/plugins/discourse-local-dates/discourse/components/modal/local-dates-create";
 import { getRandomID, purifyRoomID } from "../../lib/jitsi";
-
 // Lazy import in case the plugin is not installed
 let buildParams;
 try {
@@ -22,6 +21,7 @@ export default class InsertDateTime extends LocalDatesCreate {
 
   @tracked jitsiRoom = "";
   @tracked includeJitsi = false;
+  @tracked willCreateEvent = false;
 
   // Randomly generated meeting ID
   randomRoomID = getRandomID();
@@ -61,11 +61,23 @@ export default class InsertDateTime extends LocalDatesCreate {
     return roomURL.toString();
   }
 
-  createJitsiEvent() {
-    const config = this.computedConfig;
+  get recurringOptions() {
+    if (this.willCreateEvent) {
+      return [
+        { id: "every_day", name: "Every Day" },
+        { id: "every_month", name: "Every Month" },
+        { id: "every_weekday", name: "Every Weekday" },
+        { id: "every_week", name: "Every Week" },
+        { id: "every_two_weeks", name: "Every Two Weeks" },
+        { id: "every_four_weeks", name: "Every Four Weeks" },
+      ];
+    } else {
+      return super.recurringOptions;
+    }
+  }
 
-    // Set the event room URL
-    this.model.event.url = this.roomURL;
+  saveEvent() {
+    const config = this.computedConfig;
 
     if (!config.from) {
       this.closeModal();
@@ -74,11 +86,24 @@ export default class InsertDateTime extends LocalDatesCreate {
 
     const startsAt = config.from.dateTime;
     const endsAt = config.to.range ? config.to.dateTime : null;
+    const url = this.includeJitsi ? this.roomURL : null;
+
+    // Ensure recurrence exists within current type
+    let recurrence = null;
+    let recurringOptions = this.recurringOptions;
+    if (
+      recurringOptions.find((option) => option.id === this.recurring) !==
+      undefined
+    ) {
+      recurrence = this.recurring;
+    }
 
     this.model.event.setProperties({
       starts_at: startsAt,
       ends_at: endsAt,
-      url: this.roomURL,
+      url,
+      recurrence,
+      timezone: this.timezone,
     });
 
     const eventParams = buildParams(
@@ -100,8 +125,8 @@ export default class InsertDateTime extends LocalDatesCreate {
 
   @action
   createEvent() {
-    if (this.includeJitsi) {
-      this.createJitsiEvent();
+    if (this.willCreateEvent) {
+      this.saveEvent();
     } else {
       this.save();
     }

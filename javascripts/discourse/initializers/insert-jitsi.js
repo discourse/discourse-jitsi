@@ -98,6 +98,18 @@ function createChatButton(chat, modal, id, position) {
 
 /* eslint-enable */
 
+function removeToolbarItem(toolbar, group, id) {
+  const targetGroup = toolbar.groups.find((value) => value.group === group);
+  if (targetGroup !== undefined) {
+    const buttonIndex = targetGroup.buttons.findIndex(
+      (button) => button.id === id
+    );
+    if (buttonIndex !== -1) {
+      targetGroup.buttons.splice(buttonIndex, 1);
+    }
+  }
+}
+
 export default {
   name: "insert-jitsi",
 
@@ -149,7 +161,7 @@ export default {
                 },
                 attributes: {
                   target: "_blank",
-                  title: I18n.t(themePrefix("start_title")),
+                  title: I18n.t(themePrefix("launch_jitsi")),
                 },
               },
               // Use the video icon
@@ -207,13 +219,19 @@ export default {
       if (currentUser && currentUser.can_create_discourse_post_event) {
         if (settings.replace_date_time) {
           api.onToolbarCreate((toolbar) => {
+            // Remove the existing toolbar item
+            removeToolbarItem(toolbar, "extras", "local-dates");
+
+            // Add our new toolbar item
             toolbar.addButton({
               title: "discourse_local_dates.title",
               id: "insertJitsiEvent",
               group: "insertions",
               icon: settings.event_button_icon,
               perform: (toolbarEvent) => {
-                const eventModel = store.createRecord("discourse-post-event-event");
+                const eventModel = store.createRecord(
+                  "discourse-post-event-event"
+                );
                 eventModel.setProperties({
                   status: "public",
                   custom_fields: EmberObject.create({}),
@@ -228,7 +246,7 @@ export default {
                     insertDate: toolbarEvent.addText,
                   },
                 });
-              }
+              },
             });
           });
         }
