@@ -96,24 +96,6 @@ function createChatButton(chat, modal, id, position) {
   };
 }
 
-function createJitsiEventAction(toolbarEvent, modal, store) {
-  const eventModel = store.createRecord("discourse-post-event-event");
-  eventModel.setProperties({
-    status: "public",
-    custom_fields: EmberObject.create({}),
-    starts_at: moment(),
-    timezone: moment.tz.guess(),
-  });
-
-  modal.show(InsertDateTime, {
-    model: {
-      event: eventModel,
-      insertMeeting: toolbarEvent.addText,
-      insertDate: toolbarEvent.addText,
-    },
-  });
-}
-
 /* eslint-enable */
 
 export default {
@@ -230,8 +212,23 @@ export default {
               id: "insertJitsiEvent",
               group: "insertions",
               icon: settings.event_button_icon,
-              perform: (toolbarEvent) =>
-                createJitsiEventAction(toolbarEvent, modal, store),
+              perform: (toolbarEvent) => {
+                const eventModel = store.createRecord("discourse-post-event-event");
+                eventModel.setProperties({
+                  status: "public",
+                  custom_fields: EmberObject.create({}),
+                  starts_at: moment(),
+                  timezone: moment.tz.guess(),
+                });
+
+                modal.show(InsertDateTime, {
+                  model: {
+                    event: eventModel,
+                    insertMeeting: toolbarEvent.addText,
+                    insertDate: toolbarEvent.addText,
+                  },
+                });
+              }
             });
           });
         }
