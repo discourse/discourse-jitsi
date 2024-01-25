@@ -147,7 +147,7 @@ export default {
                 },
                 attributes: {
                   target: "_blank",
-                  title: I18n.t(themePrefix("start_title")),
+                  title: I18n.t(themePrefix("launch_jitsi")),
                 },
               },
               // Use the video icon
