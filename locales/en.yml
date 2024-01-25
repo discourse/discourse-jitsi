@@ -4,6 +4,10 @@ en:
   room_url_label: Room URL
   button_text_label: Button label
   launch_jitsi: Start Video Conference
+  create_event_label: Create an event
+  create_event_description: Create an event for this date/time
+  include_jitsi_label: Include Jitsi URL
+  include_jitsi_description: Include a Jitsi room URL with this event
   modal:
     room_field_description: Enter an ID for your room (or leave empty to use a randomly generated ID).
     url_description: You can connect to and share the room using the URL below
