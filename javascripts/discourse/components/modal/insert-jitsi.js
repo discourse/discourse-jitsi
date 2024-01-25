@@ -5,7 +5,7 @@ import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { copyText, getRandomID, purifyRoomID } from "../../lib/jitsi";
 
-export default class InsertJitsiComponent extends Component {
+export default class InsertJitsi extends Component {
   @tracked mobileIframe = settings.default_mobile_iframe;
   @tracked desktopIframe = settings.default_desktop_iframe;
   @tracked jitsiRoom = "";

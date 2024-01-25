@@ -1,9 +1,11 @@
 /* global JitsiMeetExternalAPI, settings, themePrefix */
+import EmberObject from "@ember/object";
 import loadScript from "discourse/lib/load-script";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconHTML, iconNode } from "discourse-common/lib/icon-library";
 import I18n from "I18n";
-import InsertJitsiComponent from "../components/modal/insert-jitsi";
+import InsertDateTime from "../components/modal/insert-date-time";
+import InsertJitsi from "../components/modal/insert-jitsi";
 
 /* eslint-disable */
 // prettier-ignore
@@ -75,7 +77,7 @@ function createChatButton(chat, modal, id, position) {
     icon: settings.button_icon,
     label: themePrefix("composer_title"),
     action: () => {
-      modal.show(InsertJitsiComponent, {
+      modal.show(InsertJitsi, {
         model: {
           insertMeeting: (text) => {
             // Get the active channel ensuring one is present
@@ -94,6 +96,24 @@ function createChatButton(chat, modal, id, position) {
   };
 }
 
+function createJitsiEventAction(toolbarEvent, modal, store) {
+  const eventModel = store.createRecord("discourse-post-event-event");
+  eventModel.setProperties({
+    status: "public",
+    custom_fields: EmberObject.create({}),
+    starts_at: moment(),
+    timezone: moment.tz.guess(),
+  });
+
+  modal.show(InsertDateTime, {
+    model: {
+      event: eventModel,
+      insertMeeting: toolbarEvent.addText,
+      insertDate: toolbarEvent.addText,
+    },
+  });
+}
+
 /* eslint-enable */
 
 export default {
@@ -103,6 +123,7 @@ export default {
     withPluginApi("0.8.31", (api) => {
       const currentUser = api.getCurrentUser();
       const modal = api.container.lookup("service:modal");
+      const store = api.container.lookup("service:store");
 
       api.decorateCooked(attachJitsi, { id: "discourse-jitsi" });
 
@@ -135,7 +156,7 @@ export default {
               "a.icon.btn-flat",
               {
                 onclick: () => {
-                  modal.show(InsertJitsiComponent, {
+                  modal.show(InsertJitsi, {
                     model: {
                       // This model cannot insert
                       insertMeeting: () => {},
@@ -178,7 +199,7 @@ export default {
           icon: settings.button_icon,
           label: themePrefix("composer_title"),
           action: (toolbarEvent) => {
-            modal.show(InsertJitsiComponent, {
+            modal.show(InsertJitsi, {
               model: { insertMeeting: toolbarEvent.addText },
             });
           },
@@ -193,11 +214,27 @@ export default {
             group: "insertions",
             icon: settings.button_icon,
             perform: (toolbarEvent) =>
-              modal.show(InsertJitsiComponent, {
+              modal.show(InsertJitsi, {
                 model: { insertMeeting: toolbarEvent.addText },
               }),
           });
         });
+      }
+
+      // Calendar event integration (Replace "Insert date/time")
+      if (currentUser && currentUser.can_create_discourse_post_event) {
+        if (settings.replace_date_time) {
+          api.onToolbarCreate((toolbar) => {
+            toolbar.addButton({
+              title: "discourse_local_dates.title",
+              id: "insertJitsiEvent",
+              group: "insertions",
+              icon: settings.event_button_icon,
+              perform: (toolbarEvent) =>
+                createJitsiEventAction(toolbarEvent, modal, store),
+            });
+          });
+        }
       }
     });
   },
