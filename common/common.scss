@@ -72,3 +72,10 @@
   cursor: pointer;
   margin-top: 0.5em;
 }
+
+
+@media screen and (max-width: 350px) {
+  .header-icon-meeting, .chat-composer-button.-insertChatJitsiInline {
+    display: none;
+  }
+}
