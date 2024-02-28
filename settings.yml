@@ -12,6 +12,25 @@ jitsi_script_src:
 button_icon:
   default: "video"
   description: "Enter the name of the FontAwesome 5 icon to display in the Jitsi button. "
+chat_button:
+  default: true
+  description: "Integrate with Discourse Chat"
+hide_iframe_buttons:
+  default: false
+  description: "Hide the choice for iframe settings from users, the default settings below will be used"
+default_mobile_iframe:
+  default: true
+  description: "Enable iframe mode by default for mobile"
+default_desktop_iframe:
+  default: true
+  description: "Enable iframe mode by default for desktop"
+chat_button_position:
+  description: "Position of the button within the chat window"
+  default: dropdown
+  type: enum
+  choices:
+    - dropdown
+    - inline
 svg_icons:
   default: "video"
   type: "list"
