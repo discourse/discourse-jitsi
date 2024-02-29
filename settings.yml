@@ -1,20 +1,19 @@
-show_in_options_dropdown:
-  default: false
-  description: "When unchecked, icon is shown in composer toolbar."
+locations:
+  type: "list"
+  list_type: "compact"
+  description: 'The various locations where a video button should be added, when adding manually ensure the names match the following options: "Header Icon","Composer Toolbar","Composer Gear Menu","Chat Icon","Chat Toolbar"'
+  default: "Header Icon|Composer Toolbar|Composer Gear Menu|Chat Icon|Chat Toolbar"
 only_available_to_staff:
   default: false
+replace_date_time:
+  default: false
+  description: 'Replace the "Insert date/time" button with a version that allows creating jitsi events'
 meet_jitsi_domain:
   default: "meet.jit.si"
   description: "Domain only (no protocol, no trailing slash)."
 jitsi_script_src:
   default: "https://meet.jit.si/external_api.js"
   description: "URL of external API javascript file. If you change this, you will also need to add the URL to the 'content security script src' site setting."
-button_icon:
-  default: "video"
-  description: "Enter the name of the FontAwesome 5 icon to display in the Jitsi button. "
-chat_button:
-  default: true
-  description: "Integrate with Discourse Chat"
 hide_iframe_buttons:
   default: false
   description: "Hide the choice for iframe settings from users, the default settings below will be used"
@@ -24,15 +23,17 @@ default_mobile_iframe:
 default_desktop_iframe:
   default: true
   description: "Enable iframe mode by default for desktop"
-chat_button_position:
-  description: "Position of the button within the chat window"
-  default: dropdown
-  type: enum
-  choices:
-    - dropdown
-    - inline
+button_icon:
+  default: "video"
+  description: "Enter the name of the FontAwesome 5 icon to display in the Jitsi button. "
+event_button_icon:
+  default: "calendar-alt"
+  description: "Enter the name of the FontAwesome 5 icon to display in the Jitsi event button. "
+copy_button_icon:
+  default: "copy"
+  description: "Enter the name of the FontAwesome 5 icon to display as the copy button. "
 svg_icons:
   default: "video"
   type: "list"
   list_type: "compact"
-  description: "If using a custom icon, add it to this field too (in addition to 'button_icon' above."
+  description: "If using a custom icon, add it to this field too (in addition to 'button_icon', 'copy_button_icon', and 'event_button_icon' above.)"
