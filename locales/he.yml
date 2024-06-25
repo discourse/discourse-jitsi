@@ -5,3 +5,14 @@
 # https://translate.discourse.org/
 
 he:
+  composer_title: Jitsi עם Discord
+  room_label: מזהה חדר ב־Jitsi
+  button_text_label: תווית כפתור
+  launch_jitsi: התחלת דיון וידאו
+  modal:
+    room_field_description: נא למלא מזהה לחדר שלך (או להשאיר ריק כדי לקבל מזהה שנוצר אוטומטית).
+    insert: הוספה
+    cancel: ביטול
+    title: הוספת שילוב מול Jitsi
+    mobile_iframe: הצגת חלונית iframe במכשירים ניידים
+    desktop_iframe: הצגת חלונית iframe במחשבים
