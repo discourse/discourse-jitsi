@@ -1,14 +1,41 @@
-/*eslint no-undef:0 */
+/* global settings */
 
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
+import { copyText, getRandomID, purifyRoomID } from "../../lib/jitsi";
 
-export default class InsertJitsiComponent extends Component {
+export default class InsertJitsi extends Component {
   @tracked mobileIframe = settings.default_mobile_iframe;
   @tracked desktopIframe = settings.default_desktop_iframe;
   @tracked jitsiRoom = "";
   @tracked buttonText = "";
+  @tracked copied = false;
+
+  // Randomly generated meeting ID
+  randomRoomID = getRandomID();
+
+  get roomID() {
+    let roomID = "";
+
+    // User specified room ID
+    if (this.jitsiRoom.length > 0) {
+      roomID = purifyRoomID(this.jitsiRoom);
+    }
+
+    // If a custom room ID is empty or not specified use a random one
+    if (roomID.length === 0) {
+      roomID = this.randomRoomID;
+    }
+
+    return roomID;
+  }
+
+  get roomURL() {
+    const domain = settings.meet_jitsi_domain;
+    const roomURL = new URL(this.roomID, `https://${domain}`);
+    return roomURL.toString();
+  }
 
   keyDown(e) {
     if (e.keyCode === 13) {
@@ -18,26 +45,36 @@ export default class InsertJitsiComponent extends Component {
     }
   }
 
-  randomID() {
-    return Math.random().toString(36).slice(-8);
-  }
-
   @action
   insert() {
-    const btnTxt = this.buttonText ? ` label="${this.buttonText}"` : "";
-    const roomID = this.jitsiRoom || this.randomID();
-
     let text;
 
     if (this.args.model.plainText) {
-      const domain = settings.meet_jitsi_domain;
-      text = `https://${domain}/${roomID}`;
+      text = this.roomURL;
     } else {
+      const roomID = this.roomID;
+      const btnTxt = this.buttonText ? ` label="${this.buttonText}"` : "";
       text = `[wrap=discourse-jitsi room="${roomID}"${btnTxt} mobileIframe="${this.mobileIframe}" desktopIframe="${this.desktopIframe}"][/wrap]`;
     }
 
     this.args.model.insertMeeting(text);
     this.args.closeModal();
+  }
+
+  @action
+  openRoomURL() {
+    this.args.closeModal();
+    window.open(this.roomURL, "_blank");
+  }
+
+  @action
+  copyRoomURL() {
+    this.copied = true;
+    copyText(this.roomURL);
+
+    setTimeout(() => {
+      this.copied = false;
+    }, 1000);
   }
 
   @action
