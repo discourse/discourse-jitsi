@@ -5,3 +5,14 @@
 # https://translate.discourse.org/
 
 fr:
+  composer_title: Discours Jitsi
+  room_label: ID du salon Jitsi
+  button_text_label: Étiquette du bouton
+  launch_jitsi: Démarrer une vidéoconférence
+  modal:
+    room_field_description: Saisissez un identifiant pour votre salon (ou laissez ce champ vide pour utiliser un identifiant généré aléatoirement).
+    insert: Insérer
+    cancel: Annuler
+    title: Ajouter l'intégration Jitsi
+    mobile_iframe: Afficher dans un iframe sur les appareils mobiles
+    desktop_iframe: Afficher dans une iframe sur les ordinateurs de bureau

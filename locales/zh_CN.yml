@@ -5,3 +5,14 @@
 # https://translate.discourse.org/
 
 zh_CN:
+  composer_title: Discourse Jitsi
+  room_label: Jitsi 房间 ID
+  button_text_label: 按钮标签
+  launch_jitsi: 开始视频会议
+  modal:
+    room_field_description: 为您的房间输入 ID（或留空以使用随机生成的 ID）。
+    insert: 插入
+    cancel: 取消
+    title: 添加 Jitsi 集成
+    mobile_iframe: 在移动设备的 iframe 中显示
+    desktop_iframe: 在台式设备的 iframe 中显示

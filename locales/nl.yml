@@ -5,3 +5,14 @@
 # https://translate.discourse.org/
 
 nl:
+  composer_title: Discourse Jitsi
+  room_label: Jitsi-ruimte-ID
+  button_text_label: Knoplabel
+  launch_jitsi: Videoconferentie starten
+  modal:
+    room_field_description: Voer een ID in voor je ruimte (of laat dit leeg om een willekeurig gegenereerde ID te gebruiken).
+    insert: Invoegen
+    cancel: Annuleren
+    title: Jitsi-integratie toevoegen
+    mobile_iframe: Weergeven in een iframe op mobiele apparaten
+    desktop_iframe: Weergeven in een iframe op desktopapparaten

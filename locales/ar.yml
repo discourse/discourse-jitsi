@@ -5,3 +5,14 @@
 # https://translate.discourse.org/
 
 ar:
+  composer_title: Discourse Jitsi
+  room_label: معرِّف غرفة Jitsi
+  button_text_label: تسمية الزر
+  launch_jitsi: بدء مؤتمر الفيديو
+  modal:
+    room_field_description: أدخل معرِّفًا لغرفتك (أو اتركه فارغًا لاستخدام معرِّف تم إنشاؤه عشوائيًا).
+    insert: إدراج
+    cancel: إلغاء
+    title: إضافة تكامل Jitsi
+    mobile_iframe: العرض في iframe على أجهزة الجوَّال
+    desktop_iframe: العرض في iframe على أجهزة سطح المكتب
