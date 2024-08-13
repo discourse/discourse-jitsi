@@ -5,3 +5,14 @@
 # https://translate.discourse.org/
 
 tr_TR:
+  composer_title: Discourse Jitsi
+  room_label: Jitsi oda kimliği
+  button_text_label: Düğme etiketi
+  launch_jitsi: Video Konferansı başlat
+  modal:
+    room_field_description: Odanız için bir kimlik girin (veya rastgele oluşturulmuş bir kimlik kullanmak için boş bırakın).
+    insert: Ekle
+    cancel: İptal et
+    title: Jitsi Entegrasyonunu ekle
+    mobile_iframe: Mobil cihazlarda iframe'de göster
+    desktop_iframe: Masaüstü cihazlarda bir iframe'de göster

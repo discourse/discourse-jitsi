@@ -5,3 +5,14 @@
 # https://translate.discourse.org/
 
 fi:
+  composer_title: Discourse Jitsi
+  room_label: Jitsi-huoneen tunnus
+  button_text_label: Painikkeen tunniste
+  launch_jitsi: Aloita videoneuvottelu
+  modal:
+    room_field_description: Anna huoneellesi tunnus (tai jätä tyhjäksi, jos haluat käyttää satunnaisesti luotua tunnusta).
+    insert: Lisää
+    cancel: Peruuta
+    title: Lisää Jitsi-integraatio
+    mobile_iframe: Näytä iframe-kehyksessä mobiililaitteissa
+    desktop_iframe: Näytä iframe-kehyksessä työpöytälaitteissa

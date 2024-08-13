@@ -10,7 +10,7 @@ de:
   button_text_label: Beschriftung der Schaltfläche
   launch_jitsi: Videokonferenz starten
   modal:
-    room_field_description: Gib eine ID für deinen Raum ein (oder füll es nicht aus, um eine zufällig generierte ID zu verwenden).
+    room_field_description: Gib eine ID für deinen Raum ein (oder lass das Feld leer, um eine zufällig generierte ID zu verwenden).
     insert: Einfügen
     cancel: Abbrechen
     title: Jitsi-Integration hinzufügen
