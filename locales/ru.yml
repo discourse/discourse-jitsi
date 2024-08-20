@@ -5,3 +5,14 @@
 # https://translate.discourse.org/
 
 ru:
+  composer_title: Jitsi для Discourse
+  room_label: Идентификатор комнаты Jitsi
+  button_text_label: Метка кнопки
+  launch_jitsi: Начать видеоконференцию
+  modal:
+    room_field_description: Введите идентификатор вашей комнаты (или оставьте поле пустым, чтобы использовать случайно сгенерированный идентификатор).
+    insert: Вставить
+    cancel: Отменить
+    title: Добавить интеграцию Jitsi
+    mobile_iframe: Показывать в iframe на мобильных устройствах
+    desktop_iframe: Показывать в iframe на настольных устройствах
