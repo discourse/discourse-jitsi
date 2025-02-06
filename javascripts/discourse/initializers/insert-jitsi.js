@@ -1,9 +1,9 @@
 /*eslint no-undef:0 */
 /* global JitsiMeetExternalAPI */
+import { iconHTML } from "discourse/lib/icon-library";
 import loadScript from "discourse/lib/load-script";
 import { withPluginApi } from "discourse/lib/plugin-api";
-import { iconHTML } from "discourse-common/lib/icon-library";
-import I18n from "I18n";
+import I18n from "discourse-i18n";
 import InsertJitsiComponent from "../components/modal/insert-jitsi";
 
 /* eslint-disable */
