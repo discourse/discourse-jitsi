@@ -58,7 +58,7 @@ function attachButton($elem, user, site) {
 }
 
 function attachJitsi($elem, helper) {
-  if (helper) {
+  if (helper?.getModel()) {
     const { currentUser, site } = helper.widget;
 
     $elem.find("[data-wrap=discourse-jitsi]").each((idx, val) => {
