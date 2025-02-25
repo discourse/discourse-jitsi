@@ -6,3 +6,10 @@
     max-width: 260px;
   }
 }
+
+.form-kit__container-content {
+  #control-mobileIframe &,
+  #control-desktopIframe & {
+    width: 100%;
+  }
+}
