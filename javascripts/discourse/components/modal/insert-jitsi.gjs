@@ -33,12 +33,12 @@ export default class InsertJitsiComponent extends Component {
 
   @action
   insert(data) {
-    const roomID = data.jitsiRoom || this.randomID;
+    const roomID = data.jitsiRoom.trim() || this.randomID;
     let text;
 
     if (this.args.model.plainText) {
       const domain = settings.meet_jitsi_domain;
-      text = `https://${domain}/${roomID}`;
+      text = `https://${domain}/${encodeURIComponent(roomID)}`;
     } else {
       const attributes = [
         `room="${roomID}"`,
