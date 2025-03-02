@@ -8,6 +8,6 @@ en:
     insert: Insert
     cancel: Cancel
     title: Add Jitsi Integration
-    iframe_title: Iframe
-    mobile_iframe: Show in an iframe on mobile devices
-    desktop_iframe: Show in an iframe on desktop devices
+    iframe_title: Show an iframe on
+    mobile_iframe: mobile
+    desktop_iframe: desktop
