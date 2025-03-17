@@ -19,15 +19,18 @@ function insertJitsi(api) {
         const { label, room, mobileIframe, desktopIframe } =
           wrapElement.dataset;
 
-        helper.renderGlimmer(wrapElement, <template>
-          <LaunchButton
-            @label={{label}}
-            @room={{room}}
-            @mobileIframe={{mobileIframe}}
-            @desktopIframe={{desktopIframe}}
-            @isPreview={{isPreview}}
-          />
-        </template>);
+        helper.renderGlimmer(
+          wrapElement,
+          <template>
+            <LaunchButton
+              @label={{label}}
+              @room={{room}}
+              @mobileIframe={{mobileIframe}}
+              @desktopIframe={{desktopIframe}}
+              @isPreview={{isPreview}}
+            />
+          </template>
+        );
       }
     );
   });
