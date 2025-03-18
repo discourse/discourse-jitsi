@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 lt:
+  modal:
+    mobile_iframe: mobilus
+    desktop_iframe: darbalaukis

@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 zh_TW:
+  modal:
+    mobile_iframe: 行動裝置
+    desktop_iframe: 電腦

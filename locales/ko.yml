@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 ko:
+  modal:
+    mobile_iframe: 모바일
+    desktop_iframe: 데스크톱

@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 pt:
+  modal:
+    mobile_iframe: móvel
+    desktop_iframe: desktop

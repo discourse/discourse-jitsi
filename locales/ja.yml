@@ -14,5 +14,5 @@ ja:
     insert: 挿入
     cancel: キャンセル
     title: Jitsi 統合の追加
-    mobile_iframe: モバイルデバイスでは iframe に表示
-    desktop_iframe: デスクトップデバイスでは iframe で表示
+    mobile_iframe: モバイル
+    desktop_iframe: デスクトップ

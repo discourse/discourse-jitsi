@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 hy:
+  modal:
+    mobile_iframe: հեռախոսային
+    desktop_iframe: համակարգչային

@@ -14,5 +14,5 @@ tr_TR:
     insert: Ekle
     cancel: İptal et
     title: Jitsi Entegrasyonunu ekle
-    mobile_iframe: Mobil cihazlarda iframe'de göster
-    desktop_iframe: Masaüstü cihazlarda bir iframe'de göster
+    mobile_iframe: mobil
+    desktop_iframe: masaüstü

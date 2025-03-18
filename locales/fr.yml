@@ -14,5 +14,5 @@ fr:
     insert: Insérer
     cancel: Annuler
     title: Ajouter l'intégration Jitsi
-    mobile_iframe: Afficher dans un iframe sur les appareils mobiles
-    desktop_iframe: Afficher dans une iframe sur les ordinateurs de bureau
+    mobile_iframe: mobile
+    desktop_iframe: bureau

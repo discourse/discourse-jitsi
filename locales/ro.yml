@@ -5,3 +5,7 @@
 # https://translate.discourse.org/
 
 ro:
+  modal:
+    iframe_title: Arată un iframe pe
+    mobile_iframe: mobil
+    desktop_iframe: desktop

@@ -5,3 +5,5 @@
 # https://translate.discourse.org/
 
 th:
+  modal:
+    mobile_iframe: โทรศัพท์

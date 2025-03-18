@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 vi:
+  modal:
+    mobile_iframe: điện thoại
+    desktop_iframe: máy tính để bàn
