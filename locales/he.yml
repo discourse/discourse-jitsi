@@ -14,5 +14,6 @@ he:
     insert: הוספה
     cancel: ביטול
     title: הוספת שילוב מול Jitsi
-    mobile_iframe: הצגת חלונית iframe במכשירים ניידים
-    desktop_iframe: הצגת חלונית iframe במחשבים
+    iframe_title: הצגת iframe עם
+    mobile_iframe: נייד
+    desktop_iframe: מחשב

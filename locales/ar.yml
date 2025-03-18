@@ -14,5 +14,5 @@ ar:
     insert: إدراج
     cancel: إلغاء
     title: إضافة تكامل Jitsi
-    mobile_iframe: العرض في iframe على أجهزة الجوَّال
-    desktop_iframe: العرض في iframe على أجهزة سطح المكتب
+    mobile_iframe: الجوَّال
+    desktop_iframe: سطح المكتب

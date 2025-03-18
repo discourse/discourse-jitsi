@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 ca:
+  modal:
+    mobile_iframe: mòbil
+    desktop_iframe: escriptori

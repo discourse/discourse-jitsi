@@ -14,5 +14,5 @@ nl:
     insert: Invoegen
     cancel: Annuleren
     title: Jitsi-integratie toevoegen
-    mobile_iframe: Weergeven in een iframe op mobiele apparaten
-    desktop_iframe: Weergeven in een iframe op desktopapparaten
+    mobile_iframe: mobiel
+    desktop_iframe: desktop

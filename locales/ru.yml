@@ -14,5 +14,5 @@ ru:
     insert: Вставить
     cancel: Отменить
     title: Добавить интеграцию Jitsi
-    mobile_iframe: Показывать в iframe на мобильных устройствах
-    desktop_iframe: Показывать в iframe на настольных устройствах
+    mobile_iframe: мобильная
+    desktop_iframe: настольная

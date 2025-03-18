@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 fa_IR:
+  modal:
+    mobile_iframe: موبایل
+    desktop_iframe: کامپیوتر

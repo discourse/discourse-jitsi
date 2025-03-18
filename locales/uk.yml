@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 uk:
+  modal:
+    mobile_iframe: мобільний
+    desktop_iframe: десктоп
