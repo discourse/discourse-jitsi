@@ -14,5 +14,6 @@ de:
     insert: Einfügen
     cancel: Abbrechen
     title: Jitsi-Integration hinzufügen
-    mobile_iframe: mobil
-    desktop_iframe: desktop
+    iframe_title: Einen Iframe anzeigen für
+    mobile_iframe: Mobilgeräten
+    desktop_iframe: Desktop-Geräten
