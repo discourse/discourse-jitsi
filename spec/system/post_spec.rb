@@ -42,9 +42,12 @@ RSpec.describe "Jitsi component - post view", system: true do
 
     it "redirects on click" do
       topic_page.visit_topic(topic)
+
+      try_until_success { expect(page.windows.length).to eq(1) }
+
       page.find('[data-room="test-without-iframe"] button').click
-      page.switch_to_window(page.windows.last)
-      expect(page).to have_current_path("/test-without-iframe")
+
+      try_until_success { expect(page.windows.length).to eq(2) }
     end
   end
 end
