@@ -5,6 +5,15 @@
 # https://translate.discourse.org/
 
 fa_IR:
+  composer_title: جیتسی Discourse
+  room_label: شناسه اتاق جیتسی
+  button_text_label: برچسب دکمه
+  launch_jitsi: شروع کنفرانس ویدیویی
   modal:
+    room_field_description: یک شناسه برای اتاق خود وارد کنید (یا خالی بگذارید تا شناسه‌ای تصادفی ایجاد شود).
+    insert: درج کردن
+    cancel: انصراف
+    title: افزودن یکپارچه‌سازی جیتسی
+    iframe_title: نمایش یک iframe روی
     mobile_iframe: موبایل
-    desktop_iframe: کامپیوتر
+    desktop_iframe: دسکتاپ
