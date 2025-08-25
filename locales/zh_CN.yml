@@ -14,5 +14,6 @@ zh_CN:
     insert: 插入
     cancel: 取消
     title: 添加 Jitsi 集成
+    iframe_title: iframe 显示位置
     mobile_iframe: 移动
     desktop_iframe: 桌面
