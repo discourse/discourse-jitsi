@@ -14,5 +14,6 @@ fi:
     insert: Lisää
     cancel: Peruuta
     title: Lisää Jitsi-integraatio
-    mobile_iframe: mobiili
-    desktop_iframe: työpöytä
+    iframe_title: Näytä iframe
+    mobile_iframe: mobiililaitteella
+    desktop_iframe: työpöytälaitteella

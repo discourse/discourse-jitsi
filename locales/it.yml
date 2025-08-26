@@ -14,5 +14,6 @@ it:
     insert: Inserisci
     cancel: Annulla
     title: Aggiungi l'integrazione Jitsi
+    iframe_title: Mostra un iframe su
     mobile_iframe: mobile
     desktop_iframe: desktop
