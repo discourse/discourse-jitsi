@@ -14,5 +14,6 @@ pt_BR:
     insert: Inserir
     cancel: Cancelar
     title: Adicionar integração com o Jitsi
+    iframe_title: Mostrar iframe em
     mobile_iframe: móvel
     desktop_iframe: desktop
