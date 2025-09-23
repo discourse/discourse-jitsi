@@ -30,8 +30,9 @@ RSpec.describe "Jitsi component - composer view", system: true do
       theme.save!
 
       topic_page.visit_topic_and_open_composer(topic)
-      page.find(".toolbar-popup-menu-options").click
-      expect(page).to have_css(".select-kit-row[title='Discourse Jitsi']")
+
+      page.find(".toolbar-popup-menu-options[data-identifier='toolbar-menu__options']").click
+      expect(page).to have_css(".dropdown-menu__item .btn[title='Discourse Jitsi']")
     end
 
     it "inserts a button for staff only" do
