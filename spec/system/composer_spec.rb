@@ -90,8 +90,11 @@ RSpec.describe "Jitsi component - composer view", system: true do
     it "without iframes options" do
       topic_page.visit_topic_and_open_composer(topic)
       page.find("button.insertJitsi").click
-      page.find("input[name='mobileIframe']").click
-      page.find("input[name='desktopIframe']").click
+
+      form = PageObjects::Components::FormKit.new(".insert-jitsi-form")
+      form.field("mobileIframe").toggle
+      form.field("desktopIframe").toggle
+
       page.find("button[type='submit']").click
       composer.has_content?(
         '[wrap=discourse-jitsi room="identifier" mobileIframe="false" desktopIframe="false"][/wrap]',
