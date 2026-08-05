@@ -63,8 +63,6 @@ function insertJitsi(api) {
   }
 
   if (settings.chat_button && api.registerChatComposerButton) {
-    const chat = api.container.lookup("service:chat");
-
     api.registerChatComposerButton({
       title: themePrefix("composer_title"),
       id: "insertChatJitsi",
@@ -72,18 +70,17 @@ function insertJitsi(api) {
       position: settings.chat_button_position,
       icon: settings.button_icon,
       label: themePrefix("composer_title"),
-      action: () => {
+      action(context) {
+        // `context` is "channel" or "thread", so the meeting is inserted into
+        // the composer the button was pressed in
+        const composer = api.container.lookup(
+          `service:chat-${context}-composer`
+        );
+
         modal.show(InsertJitsiModal, {
           model: {
             insertMeeting: (text) => {
-              // Get the active channel ensuring one is present
-              const activeChannel = chat.activeChannel;
-              if (activeChannel === null) {
-                return;
-              }
-
-              // Append the meeting link to the draft
-              activeChannel.draft.message += text;
+              composer.textarea.addText(composer.textarea.getSelected(), text);
             },
             plainText: true,
           },
