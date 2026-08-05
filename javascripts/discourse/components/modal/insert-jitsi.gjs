@@ -75,9 +75,10 @@ export default class InsertJitsiComponent extends Component {
             @description={{i18n (themePrefix "modal.room_field_description")}}
             @format="large"
             @descriptionFormat="full"
+            @type="input"
             as |field|
           >
-            <field.Input />
+            <field.Control />
           </form.Field>
 
           {{#unless @model.plainText}}
@@ -86,9 +87,12 @@ export default class InsertJitsiComponent extends Component {
               @title={{i18n (themePrefix "button_text_label")}}
               @format="large"
               @descriptionFormat="full"
+              @type="input"
               as |field|
             >
-              <field.Input placeholder={{i18n (themePrefix "launch_jitsi")}} />
+              <field.Control
+                placeholder={{i18n (themePrefix "launch_jitsi")}}
+              />
             </form.Field>
 
             {{#unless settings.hide_iframe_buttons}}
@@ -100,18 +104,20 @@ export default class InsertJitsiComponent extends Component {
                   @name="mobileIframe"
                   @title={{i18n (themePrefix "modal.mobile_iframe")}}
                   @format="full"
+                  @type="checkbox"
                   as |field|
                 >
-                  <field.Checkbox />
+                  <field.Control />
                 </group.Field>
 
                 <group.Field
                   @name="desktopIframe"
                   @title={{i18n (themePrefix "modal.desktop_iframe")}}
                   @format="full"
+                  @type="checkbox"
                   as |field|
                 >
-                  <field.Checkbox />
+                  <field.Control />
                 </group.Field>
               </form.CheckboxGroup>
             {{/unless}}
